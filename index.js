@@ -1,25 +1,22 @@
 class Test{
-    myName
-    myAge
-    constructor(myName,myAge){
-        this.myName = myName
-        this.myAge = myAge
+    bg = document.querySelector(".bg")
+    btn = document.querySelector(".btn")
+    
+
+    constructor(){
+        this.bg.style.backgroundColor = "green"
+        this.btn.addEventListener("click",() => {
+        this.bg.classList.toggle("newColor")})
+        console.log("working");
     }
 
-    testFunction(myName,myAge){
-        this.myName = myName
-        this.myAge = myAge
-    }
-
-    displayMe(){
-        console.log(this.myName+" "+this.myAge);
- 
+    testFunction(){
+        
+       
         
     }
 }
 
-let obj = new Test("cooper", 25)
-obj.displayMe()
-obj.testFunction("Rakesh", 28)
+let obj = new Test()
+obj.testFunction()
 
-       console.log(this)
