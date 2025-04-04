@@ -1,22 +1,42 @@
-class Test{
-    bg = document.querySelector(".bg")
-    btn = document.querySelector(".btn")
+class Crud{
+    dataArray = []
+    count = 0
     
-
     constructor(){
-        this.bg.style.backgroundColor = "green"
-        this.btn.addEventListener("click",() => {
-        this.bg.classList.toggle("newColor")})
-        console.log("working");
+       this.todoInput = document.querySelector("#todoInput") 
+       this.addBtn = document.querySelector(".addBtn")
+       this.todoContainer = document.querySelector(".todoContainer")
+       this.elementTodo = `<li><span class="todoValue">Test<span><span><button class="editBtn">Edit</button></span><span><input type="text"><button class="updateBtn">update</button></span><span><button class="deleteBtn">delete</button></span><span><button class="doneBtn">done</button></span></li>`;
     }
 
-    testFunction(){
+    createCrud(){
+      this.addBtn.addEventListener("click",() => {
+        this.dataArray.push(todoInput.value)
+        this.todoContainer.innerHTML = ""
+        this.dataArray.forEach((data) =>{
+            this.todoContainer.innerHTML += this.elementTodo
+            console.log(this.elementTodo);
+            
+        })
         
-       
+            
+      })
+      
+      
+    }
+
+    updateCrud(){
         
+    }
+
+    deleteCrud(){
+
+    }
+
+    renderCrud(){
+
     }
 }
 
-let obj = new Test()
-obj.testFunction()
-
+obj = new Crud()
+obj.createCrud()
