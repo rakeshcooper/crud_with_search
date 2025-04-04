@@ -11,3 +11,7 @@ li {
 button {
     cursor: pointer;
 }
+
+.updatebox {
+    display: none;
+}
