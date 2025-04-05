@@ -1,11 +1,19 @@
 class Crud{
     dataArray = []
-    count = 0
+    aArray = []
+    findArray = []
+    findNew
+    type = true;
+    newType = true;
     
     constructor(){
        this.todoInput = document.querySelector("#todoInput") 
        this.addBtn = document.querySelector(".addBtn")
        this.todoContainer = document.querySelector(".todoContainer")
+       this.arrayName = document.querySelector(".name");
+       this.search = document.querySelector(".search-bar")
+       this.aArray = ["Rakesh","Cooper","Stephen","Hawking","Raghav","Cooper"]
+       this.method = document.querySelector(".method")
     }
 
     createCrud(){
@@ -32,7 +40,10 @@ class Crud{
                 this.dataArray[this.index] = this.updatedValue
                 this.currentValue.innerText = this.updatedValue
                 e.target.parentElement.previousSibling.firstChild.style.display = "inline-block"  
-               console.log(this.dataArray);    
+               console.log(this.dataArray);
+               this.aArray = this.dataArray
+               console.log(this.aArray);
+               this.searchCrud()    
             }    
        })  
     }
@@ -44,7 +55,8 @@ class Crud{
               this.index = this.dataArray.indexOf(this.currentValue.innerText)
               this.dataArray.splice(this.index,1)
               this.currentValue.parentElement.remove()
-              console.log(this.dataArray);    
+              console.log(this.dataArray);
+              this.aArray = this.dataArray    
             } 
        })
     }
@@ -59,7 +71,44 @@ class Crud{
     }
 
     searchCrud(){
-      
+        this.method.addEventListener("change", (e) =>{
+    console.log(e.target.value);
+    if(e.target.value == "regular"){
+        this.newType = this.type
+    } else if(e.target.value == "exact"){
+        this.newType = !this.type        
+    }
+})
+
+this.search.addEventListener("input",(e)=>{
+    if(this.newType == true){    
+        this.findArray = this.aArray.map((data) => {
+        this.dat = data.toLowerCase()
+        this.txtValue = this.dat.slice(0)
+            if (this.txtValue.indexOf(this.search.value) > -1 || data.indexOf(this.search.value) > -1 ){
+                console.log(this.dat);
+                return this.dat[0].toUpperCase()+this.dat.slice(1)
+            }          
+        })
+    }  else if(this.newType == false) {
+                this.findNew = this.aArray.find((ele) => ele.toLowerCase() == this.search.value);                 
+                this.findArray = [this.findNew]   
+    }
+         this.filteredArray = this.findArray.filter((data) => {
+            return data !== undefined
+            })
+            // console.log(findArray);
+            console.log(this.filteredArray.length)
+            if(this.filteredArray.length > 0){
+                if(e.target.value.length <= 0) {
+                        this.arrayName.innerHTML = "" 
+                }else{
+                    this.arrayName.innerHTML = this.filteredArray
+                }
+            } else{
+                this.arrayName.innerHTML = "Not Found"
+            }           
+})
     }
 }
 
@@ -68,4 +117,5 @@ obj.createCrud()
 obj.updateCrud()
 obj.deleteCrud()
 obj.checkedCrud()
+obj.searchCrud()
 

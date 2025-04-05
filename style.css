@@ -15,3 +15,16 @@ button {
 .updatebox {
     display: none;
 }
+
+.bar_row {
+    display: flex;
+    gap: 15px;
+}
+
+.container {
+    margin: 50px 0 0 50px;
+}
+
+.name {
+    padding-bottom: 20px;
+}

@@ -8,6 +8,22 @@
 </head>
 <body>
     <div class="container">
+        <div class="Search-container">
+        <div class="bar_row">
+            <div class="bar_col_1">
+                    <input type="text" class="search-bar"><span>search me</span>
+            </div>
+            <div class="bar_col_2">
+                    <label for="method">method</label>
+                    <select name="method" id="method" class="method">
+                        <option value="regular" selected>Regular</option>
+                        <option value="exact">Exact</option>
+                    </select>
+            </div>
+        </div>
+        <div class="name"></div> 
+      </div>
+    <div class="todo_container">
         <div class="add_container">
             <h1>CRUD in CLASS</h1>
             <label for="todoInput"></label><input type="text" id="todoInput">
@@ -21,6 +37,9 @@
             </ul>
         </div>
     </div>
+    </div>
+     
+      
     <script src="index.js"></script>
 </body>
 </html>
