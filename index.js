@@ -49,8 +49,17 @@ class Crud{
        })
     }
 
-    renderCrud(){
+    checkedCrud(){
+      this.todoContainer.addEventListener("click",(e) => {
+            if(e.target.className == "doneBtn"){
+                  this.currentValue = e.target.parentElement.parentElement.firstChild
+                  this.currentValue.style.textDecoration = "line-through"
+            } 
+       })
+    }
 
+    searchCrud(){
+      
     }
 }
 
@@ -58,4 +67,5 @@ obj = new Crud()
 obj.createCrud()
 obj.updateCrud()
 obj.deleteCrud()
+obj.checkedCrud()
 
