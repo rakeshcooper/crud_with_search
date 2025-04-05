@@ -1,7 +1,6 @@
 class Crud{
     dataArray = []
     count = 0
-    val
     
     constructor(){
        this.todoInput = document.querySelector("#todoInput") 
@@ -16,7 +15,6 @@ class Crud{
         this.todo = document.querySelector(".todo")
         console.log(this.dataArray);
         this.todoInput.value = ""
-        // this.updateCrud()
       })
     }
 
@@ -35,14 +33,20 @@ class Crud{
                 this.currentValue.innerText = this.updatedValue
                 e.target.parentElement.previousSibling.firstChild.style.display = "inline-block"  
                console.log(this.dataArray);    
-            }
-            
-       }) 
-        
+            }    
+       })  
     }
 
     deleteCrud(){
-
+        this.todoContainer.addEventListener("click",(e) => {
+            if(e.target.className == "deleteBtn"){
+              this.currentValue = e.target.parentElement.parentElement.firstChild
+              this.index = this.dataArray.indexOf(this.currentValue.innerText)
+              this.dataArray.splice(this.index,1)
+              this.currentValue.parentElement.remove()
+              console.log(this.dataArray);    
+            } 
+       })
     }
 
     renderCrud(){
@@ -53,4 +57,5 @@ class Crud{
 obj = new Crud()
 obj.createCrud()
 obj.updateCrud()
+obj.deleteCrud()
 
