@@ -23,6 +23,8 @@ class Crud{
         this.todo = document.querySelector(".todo")
         console.log(this.dataArray);
         this.todoInput.value = ""
+        this.aArray = this.dataArray
+        //this.searchCrud()  
       })
     }
 
@@ -42,8 +44,7 @@ class Crud{
                 e.target.parentElement.previousSibling.firstChild.style.display = "inline-block"  
                console.log(this.dataArray);
                this.aArray = this.dataArray
-               console.log(this.aArray);
-               this.searchCrud()    
+               console.log(this.aArray);  
             }    
        })  
     }
