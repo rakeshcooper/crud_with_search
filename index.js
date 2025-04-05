@@ -64,52 +64,56 @@ class Crud{
 
     checkedCrud(){
       this.todoContainer.addEventListener("click",(e) => {
-            if(e.target.className == "doneBtn"){
-                  this.currentValue = e.target.parentElement.parentElement.firstChild
-                  this.currentValue.style.textDecoration = "line-through"
-            } 
-       })
+        this.currentValue = e.target.parentElement.parentElement.firstChild
+            if(e.target.innerText == "done"){
+                this.currentValue.style.textDecoration = "line-through"
+                e.target.innerText = "undone"
+            } else {
+                this.currentValue.style.textDecoration = "none"
+                 e.target.innerText = "done"
+            }
+        } 
+       )
     }
 
     searchCrud(){
         this.method.addEventListener("change", (e) =>{
-    console.log(e.target.value);
-    if(e.target.value == "regular"){
-        this.newType = this.type
-    } else if(e.target.value == "exact"){
-        this.newType = !this.type        
-    }
-})
+        console.log(e.target.value);
+        if(e.target.value == "regular"){
+            this.newType = this.type
+        } else if(e.target.value == "exact"){
+            this.newType = !this.type        
+        }
+    })
 
-this.search.addEventListener("input",(e)=>{
-    if(this.newType == true){    
-        this.findArray = this.aArray.map((data) => {
-        this.dat = data.toLowerCase()
-        this.txtValue = this.dat.slice(0)
-            if (this.txtValue.indexOf(this.search.value) > -1 || data.indexOf(this.search.value) > -1 ){
-                console.log(this.dat);
-                return this.dat[0].toUpperCase()+this.dat.slice(1)
-            }          
+        this.search.addEventListener("input",(e)=>{
+            if(this.newType == true){    
+                this.findArray = this.aArray.map((data) => {
+                this.dat = data.toLowerCase()
+                this.txtValue = this.dat.slice(0)
+                    if (this.txtValue.indexOf(this.search.value) > -1 || data.indexOf(this.search.value) > -1 ){
+                        console.log(this.dat);
+                        return this.dat[0].toUpperCase()+this.dat.slice(1)
+                    }          
+                })
+            }  else if(this.newType == false) {
+                        this.findNew = this.aArray.find((ele) => ele.toLowerCase() == this.search.value);                 
+                        this.findArray = [this.findNew]   
+            }
+            this.filteredArray = this.findArray.filter((data) => {
+                    return data !== undefined
+                    })
+                    console.log(this.filteredArray.length)
+                    if(this.filteredArray.length > 0){
+                        if(e.target.value.length <= 0) {
+                                this.arrayName.innerHTML = "" 
+                        } else {
+                            this.arrayName.innerHTML = this.filteredArray
+                        }
+                    } else {
+                        this.arrayName.innerHTML = "Not Found"
+                    }           
         })
-    }  else if(this.newType == false) {
-                this.findNew = this.aArray.find((ele) => ele.toLowerCase() == this.search.value);                 
-                this.findArray = [this.findNew]   
-    }
-         this.filteredArray = this.findArray.filter((data) => {
-            return data !== undefined
-            })
-            // console.log(findArray);
-            console.log(this.filteredArray.length)
-            if(this.filteredArray.length > 0){
-                if(e.target.value.length <= 0) {
-                        this.arrayName.innerHTML = "" 
-                }else{
-                    this.arrayName.innerHTML = this.filteredArray
-                }
-            } else{
-                this.arrayName.innerHTML = "Not Found"
-            }           
-})
     }
 }
 
