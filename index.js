@@ -12,7 +12,6 @@ class Crud{
        this.todoContainer = document.querySelector(".todoContainer")
        this.arrayName = document.querySelector(".name");
        this.search = document.querySelector(".search-bar")
-       this.aArray = ["Rakesh","Cooper","Stephen","Hawking","Raghav","Cooper"]
        this.method = document.querySelector(".method")
     }
 
@@ -65,13 +64,15 @@ class Crud{
     checkedCrud(){
       this.todoContainer.addEventListener("click",(e) => {
         this.currentValue = e.target.parentElement.parentElement.firstChild
-            if(e.target.innerText == "done"){
+            if(e.target.className == "doneBtn" && e.target.innerText == "done"){
                 this.currentValue.style.textDecoration = "line-through"
                 e.target.innerText = "undone"
-            } else {
+            } else  if(e.target.className == "doneBtn" && e.target.innerText == "undone"){
                 this.currentValue.style.textDecoration = "none"
                  e.target.innerText = "done"
             }
+        console.log(e.target.className);
+        
         } 
        )
     }
@@ -86,7 +87,7 @@ class Crud{
         }
     })
 
-        this.search.addEventListener("input",(e)=>{
+    this.search.addEventListener("input",(e)=>{
             if(this.newType == true){    
                 this.findArray = this.aArray.map((data) => {
                 this.dat = data.toLowerCase()
@@ -110,11 +111,9 @@ class Crud{
                             this.todoContainer.innerHTML = "not found"
                             console.log("test");
                             
-                    }
-                   // if(this.filteredArray.length >= 0)
-                   else if(this.filteredArray != []){
+                    } else if(this.filteredArray != []){
                         this.todoContainer.innerHTML = ""
-                        if(e.target.value.length <= 0) {
+                        if(e.target.value.length == 0) {
                                 this.dataArray.forEach((element) => {
                                 this.todoContainer.innerHTML += `<li class="todo"><span class="todoValue">${element}</span><span><button class="editBtn">Edit</button></span><span class="updatebox"><input type="text"><button class="updateBtn">update</button></span><span><button class="deleteBtn">delete</button></span><span><button class="doneBtn">done</button></span></li>`
                                 console.log(element);
