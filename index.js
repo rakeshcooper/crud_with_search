@@ -93,7 +93,7 @@ class Crud{
                 this.txtValue = this.dat.slice(0)
                     if (this.txtValue.indexOf(this.search.value) > -1 || data.indexOf(this.search.value) > -1 ){
                         console.log(this.dat);
-                        return this.dat[0].toUpperCase()+this.dat.slice(1)
+                        return this.dat
                     }          
                 })
             }  else if(this.newType == false) {
@@ -104,15 +104,25 @@ class Crud{
                     return data !== undefined
                     })
                     console.log(this.filteredArray.length)
-                    if(this.filteredArray.length > 0){
+                    if(this.filteredArray.length >= 0){
+                        this.todoContainer.innerHTML = ""
                         if(e.target.value.length <= 0) {
-                                this.arrayName.innerHTML = "" 
-                        } else {
-                            this.arrayName.innerHTML = this.filteredArray
+                                this.dataArray.forEach((element) => {
+                                this.todoContainer.innerHTML += `<li class="todo"><span class="todoValue">${element}</span><span><button class="editBtn">Edit</button></span><span class="updatebox"><input type="text"><button class="updateBtn">update</button></span><span><button class="deleteBtn">delete</button></span><span><button class="doneBtn">done</button></span></li>`
+                                console.log(element);
+                                    
+                            }) 
+                        } else if(e.target.value.length > 0){
+                            console.log(e.target.value.length);
+                            this.filteredArray.forEach((element) => {
+                                this.todoContainer.innerHTML = `<li class="todo"><span class="todoValue">${element}</span><span><button class="editBtn">Edit</button></span><span class="updatebox"><input type="text"><button class="updateBtn">update</button></span><span><button class="deleteBtn">delete</button></span><span><button class="doneBtn">done</button></span></li>`
+                            })
+                        } 
+                    } else  if(this.filteredArray.length <= 0){
+                            // this.todoContainer.innerHTML = "not found"
+                            console.log("test");
+                            
                         }
-                    } else {
-                        this.arrayName.innerHTML = "Not Found"
-                    }           
         })
     }
 }
