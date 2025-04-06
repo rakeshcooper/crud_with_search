@@ -103,8 +103,16 @@ class Crud{
             this.filteredArray = this.findArray.filter((data) => {
                     return data !== undefined
                     })
+                    console.log(this.filteredArray);
+                    
                     console.log(this.filteredArray.length)
-                    if(this.filteredArray.length >= 0){
+                    if(this.filteredArray.length == 0){
+                            this.todoContainer.innerHTML = "not found"
+                            console.log("test");
+                            
+                    }
+                   // if(this.filteredArray.length >= 0)
+                   else if(this.filteredArray != []){
                         this.todoContainer.innerHTML = ""
                         if(e.target.value.length <= 0) {
                                 this.dataArray.forEach((element) => {
@@ -113,16 +121,13 @@ class Crud{
                                     
                             }) 
                         } else if(e.target.value.length > 0){
-                            console.log(e.target.value.length);
+                            // console.log(e.target.value.length);
                             this.filteredArray.forEach((element) => {
                                 this.todoContainer.innerHTML = `<li class="todo"><span class="todoValue">${element}</span><span><button class="editBtn">Edit</button></span><span class="updatebox"><input type="text"><button class="updateBtn">update</button></span><span><button class="deleteBtn">delete</button></span><span><button class="doneBtn">done</button></span></li>`
-                            })
+                            }
+                        )
                         } 
-                    } else  if(this.filteredArray.length <= 0){
-                            // this.todoContainer.innerHTML = "not found"
-                            console.log("test");
-                            
-                        }
+                    }  
         })
     }
 }
