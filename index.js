@@ -121,8 +121,9 @@ class Crud{
                             }) 
                         } else if(e.target.value.length > 0){
                             // console.log(e.target.value.length);
+                            this.todoContainer.innerHTML = ""
                             this.filteredArray.forEach((element) => {
-                                this.todoContainer.innerHTML = `<li class="todo"><span class="todoValue">${element}</span><span><button class="editBtn">Edit</button></span><span class="updatebox"><input type="text"><button class="updateBtn">update</button></span><span><button class="deleteBtn">delete</button></span><span><button class="doneBtn">done</button></span></li>`
+                                this.todoContainer.innerHTML += `<li class="todo"><span class="todoValue">${element}</span><span><button class="editBtn">Edit</button></span><span class="updatebox"><input type="text"><button class="updateBtn">update</button></span><span><button class="deleteBtn">delete</button></span><span><button class="doneBtn">done</button></span></li>`
                             }
                         )
                         } 
